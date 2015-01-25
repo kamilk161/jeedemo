@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/default.xhtml"
+                xmlns:rich="http://richfaces.org/rich">
+
+    <ui:define name="content">
+        <rich:dataTable style="width:500px" value="#{weatherBean.allWeathers}" var="item">
+            <f:facet name="header">Pogody</f:facet>
+            <rich:column colspan="3">
+                <f:facet name="header">Nazwa</f:facet>
+                <h:outputText value="#{item.name}" />
+            </rich:column>
+
+            <rich:column>
+                <f:facet name="header">#{msg.action}</f:facet>
+                <h:link styleClass="btn" outcome="edit?id=#{item.id}"
+                        includeViewParams="true" value="Edytuj pogode" />
+                <h:form>
+                    <h:commandLink action="#{weatherBean.delete(item.id)}" value="Usun"/>
+                </h:form>
+            </rich:column>
+
+        </rich:dataTable>
+    </ui:define>
+
+</ui:composition>

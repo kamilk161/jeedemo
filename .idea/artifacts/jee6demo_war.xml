@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jee6demo:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="jeedemo.war">
+      <element id="artifact" artifact-name="jee6demo:war exploded" />
+    </root>
+  </artifact>
+</component>

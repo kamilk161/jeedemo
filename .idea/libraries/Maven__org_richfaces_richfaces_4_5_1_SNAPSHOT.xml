@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.richfaces:richfaces:4.5.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/richfaces/richfaces/4.5.1-SNAPSHOT/richfaces-4.5.1-20141120.114759-14.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/richfaces/richfaces/4.5.1-SNAPSHOT/richfaces-4.5.1-20141120.114759-14-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/richfaces/richfaces/4.5.1-SNAPSHOT/richfaces-4.5.1-20141120.114759-14-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
