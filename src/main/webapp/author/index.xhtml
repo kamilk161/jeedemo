@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/default.xhtml"
+                xmlns:rich="http://richfaces.org/rich">
+
+    <ui:define name="content">
+        <rich:dataTable style="width:500px" value="#{authorBean.am.allAuthors}" var="item">
+            <f:facet name="header">Autorzy</f:facet>
+            <rich:column colspan="3">
+                <f:facet name="header">Imię</f:facet>
+                <h:outputText value="#{item.firstName}" />
+            </rich:column>
+
+            <rich:column colspan="3">
+                <f:facet name="header">Nazwisko</f:facet>
+                <h:outputText value="#{item.lastName}" />
+            </rich:column>
+
+            <rich:column>
+                <f:facet name="header">#{msg.action}</f:facet>
+                <h:link styleClass="btn" outcome="edit?id=#{item.id}"
+                        includeViewParams="true" value="Edytuj autora" />
+                <h:form>
+                    <h:commandLink action="#{authorBean.delete(item.id)}" value="Usuń"/>
+                </h:form>
+
+            </rich:column>
+
+        </rich:dataTable>
+        <h:link value="Dodaj autora" outcome="/author/add?faces-redirect=true" />
+
+    </ui:define>
+
+</ui:composition>

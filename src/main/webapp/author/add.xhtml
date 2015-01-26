@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/default.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich">
+
+    <ui:define name="content">
+        <h:form id="categoryForm">
+            <h:panelGrid columns="2">
+
+                <h:outputText value="Imię: " />
+                <h:inputText id="firstName" value="#{authorBean.firstName}"
+                             required="#{true}">
+                    <rich:placeholder value="Podaj nazwę..." />
+                </h:inputText>
+
+                <h:outputText value="Nazwisko: " />
+                <h:inputText id="lastName" value="#{authorBean.lastName}"
+                             required="#{true}">
+                    <rich:placeholder value="Podaj nazwę..." />
+                </h:inputText>
+            </h:panelGrid>
+
+
+            <h:commandButton value="Zapisz"
+                             action="#{authorBean.save}" />
+            <h:panelGrid>
+                <h:messages id="messages" showDetail="#{true}"
+                            showSummary="#{false}" />
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>

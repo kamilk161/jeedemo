@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/default.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich">
+
+    <ui:define name="content">
+        <h:form id="bookForm">
+            <h:panelGrid columns="2">
+
+                <h:outputText value="Nazwa: " />
+                <h:inputText id="firstName" value="#{bookBean.title}"
+                             required="#{true}">
+                    <rich:placeholder value="Podaj nazwę..." />
+                </h:inputText>
+
+                <h:outputText value="Autorzy" />
+                <rich:pickList value="#{bookBean.authorsId}">
+                    <f:selectItems value="#{authorBean.am.allAuthors}" var="author"
+                                   itemLabel="#{author.fullName}" itemValue="#{author.id}" />
+                </rich:pickList>
+
+                <h:outputText value="Kategoria" />
+                    <rich:select value="#{bookBean.categoryId}">
+                        <f:selectItems value="#{categoryBean.cm.allCategories}" var="category"
+                                       itemLabel="#{category.name}" itemValue="#{category.id}" />
+                </rich:select>
+
+                <h:outputText value="Data" />
+                <rich:calendar value="#{bookBean.dateOfRelease}"
+                               id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+                               style="width:200px">
+                </rich:calendar>
+            </h:panelGrid>
+
+
+            <h:commandButton value="Zapisz"
+                             action="#{bookBean.save}" />
+            <h:panelGrid>
+                <h:messages for="" />
+                <h:messages id="messages" showDetail="#{true}"
+                            showSummary="#{false}" />
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
