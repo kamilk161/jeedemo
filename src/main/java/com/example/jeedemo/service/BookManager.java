@@ -5,10 +5,11 @@ import com.example.jeedemo.domain.Book;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.Serializable;
 import java.util.List;
 
 @Stateless
-public class BookManager {
+public class BookManager implements Serializable {
     @PersistenceContext
     EntityManager em;
 
@@ -18,6 +19,10 @@ public class BookManager {
 
     public Book getBookById(Long id) {
         return em.find(Book.class, id);
+    }
+
+    public List<Book> getBookByCategoryId(Long id) {
+        return em.createNamedQuery("book.bycategory").setParameter("id", id).getResultList();
     }
 
     public void create(Book book) {

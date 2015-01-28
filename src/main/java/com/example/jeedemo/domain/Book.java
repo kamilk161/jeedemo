@@ -5,13 +5,17 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@NamedQuery(name = "book.all", query = "Select b from Book b")
+@NamedQueries({
+    @NamedQuery(name = "book.all", query = "Select b from Book b"),
+    @NamedQuery(name = "book.bycategory", query = "Select b from Book b where b.category.id = :id")
+})
 public class Book {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @Column(nullable=false)
     private String title;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -19,6 +23,9 @@ public class Book {
 
     @ManyToOne
     private Category category;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "books")
+    private List<Person> people;
 
     private Date dateOfRelease;
 
@@ -61,5 +68,13 @@ public class Book {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Person> getPeople() {
+        return people;
+    }
+
+    public void setPeople(List<Person> people) {
+        this.people = people;
     }
 }

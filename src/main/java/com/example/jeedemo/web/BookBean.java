@@ -12,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,10 @@ public class BookBean {
 
     private Long id;
 
+    @NotNull
     private String title;
 
+    @NotNull
     private List<Long> authorsId;
 
     private Long categoryId;
@@ -100,7 +103,9 @@ public class BookBean {
         List<Author> authors = authorsId.stream().map(am::getAuthorById).collect(Collectors.toList());
         book.setId(id);
         book.setAuthors(authors);
-        book.setDateOfRelease(new java.sql.Date(dateOfRelease.getTime()));
+        if(dateOfRelease != null) {
+            book.setDateOfRelease(new java.sql.Date(dateOfRelease.getTime()));
+        }
         book.setTitle(title);
         book.setCategory(cm.getCategoryById(categoryId));
         if(id == null) {

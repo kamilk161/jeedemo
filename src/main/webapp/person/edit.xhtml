@@ -8,39 +8,38 @@
                 xmlns:rich="http://richfaces.org/rich">
 
     <ui:define name="content">
-        <h:form id="dayForm">
+        <h:form id="categoryForm">
             <h:panelGrid columns="2">
 
-                <h:outputText value="Nazwa: " />
-                <h:inputText id="firstName" value="#{dayBean.name}"
+                <h:outputText value="Imię: " />
+                <h:inputText id="firstName" value="#{personBean.firstName}"
                              required="#{true}">
                     <rich:placeholder value="Podaj nazwę..." />
                 </h:inputText>
 
-                <h:outputText value="Imiona" />
-                <rich:pickList value="#{dayBean.namesIds}">
-                    <f:selectItems value="#{dayBean.allNames}" var="name"
-                                   itemLabel="#{name.name}" itemValue="#{name.id}" />
+                <h:outputText value="Nazwisko: " />
+                <h:inputText id="lastName" value="#{personBean.lastName}"
+                             required="#{true}">
+                    <rich:placeholder value="Podaj nazwę..." />
+                </h:inputText>
+
+                <h:outputText value="Książki" />
+                <rich:pickList value="#{personBean.booksId}">
+                    <f:selectItems value="#{personBean.bm.allBooks}" var="book"
+                                   itemLabel="#{book.title}" itemValue="#{book.id}" />
                 </rich:pickList>
 
-                <h:outputText value="Pogoda" />
-                <rich:select value="#{dayBean.weatherId}">
-                    <f:selectItems value="#{dayBean.allWeathers}" var="weather"
-                                   itemLabel="#{weather.name}" itemValue="#{weather.id}" />
-                </rich:select>
-
-                <h:outputText value="Data" />
-                <rich:calendar value="#{dayBean.date}"
+                <h:outputText value="Data urodzenia" />
+                <rich:calendar value="#{personBean.dateOfBirth}"
                                id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
                                style="width:200px">
                 </rich:calendar>
             </h:panelGrid>
 
 
-            <h:commandButton value="Zapisz"
-                             action="#{dayBean.save}" />
+            <h:commandButton value="Edytuj"
+                             action="#{personBean.save}" />
             <h:panelGrid>
-                <h:messages for="" />
                 <h:messages id="messages" showDetail="#{true}"
                             showSummary="#{false}" />
             </h:panelGrid>

@@ -16,7 +16,7 @@
 
             <rich:column>
                 <f:facet name="header">#{msg.action}</f:facet>
-                <h:link styleClass="btn" outcome="edit?id=#{item.id}"
+                <h:link outcome="edit?id=#{item.id}"
                         includeViewParams="true" value="Edytuj kategorię" />
                 <h:form>
                     <h:commandLink action="#{categoryBean.delete(item.id)}" value="Usuń"/>

@@ -17,6 +17,10 @@ public class AuthorManager {
         return em.createNamedQuery("author.all").getResultList();
     }
 
+    public List<Object> getMostPopularAuthors() {
+        return em.createNamedQuery("author.count").getResultList();
+    }
+
     public Author getAuthorById(Long id) {
         return em.find(Author.class, id);
     }

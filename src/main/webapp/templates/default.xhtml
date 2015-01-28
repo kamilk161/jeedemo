@@ -1,29 +1,114 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><ui:insert name="windowTitle">#{msg.mainWindowTitle}</ui:insert>
-	</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" type="javascript"></script>
+    <title><ui:insert name="windowTitle">#{msg.mainWindowTitle}</ui:insert>
+    </title>
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+            padding-top: 60px;
+        }
+
+        .sidebar-nav-fixed {
+            width: 15%;
+        }
+        td {
+            padding: 2px;
+        }
+    </style>
 </h:head>
+
+
 <h:body>
-  <h:outputStylesheet library="css" name="default.css" target="body" />
-	<div class="heading">
-	  <ui:insert name="heading">
-       #{msg.mainHeading}
-     </ui:insert>
+    <div class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <ui:insert name="heading">
+                        Projekt egzamin
+                    </ui:insert></a><a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="glyphicon glyphicon-bar"></span>
+                <span class="glyphicon glyphicon-bar"></span>
+                <span class="glyphicon glyphicon-bar"></span>
+            </a>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <h:link value="Home" outcome="/home" />
+                    </li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
     </div>
-	<div class="menuAndContent">
-	 <div class="menu">
-	   <ui:insert name="menu">
-         <ui:include src="/views/main/menu.xhtml" />
-       </ui:insert>
-      </div>
-	  <div class="content">
-	     <ui:insert name="content" />
-       </div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar-nav-fixed affix">
+                    <div class="well">
+                        <ul class="nav ">
+                            <li class="nav-header">Kategorie:</li>
+                            <ui:repeat value="#{frontendBean.cm.allCategories}" var="value">
+                                <li><h:link outcome="/books?id=#{value.id}"
+                                            includeViewParams="true" value="#{value.name}" /></li>
+                            </ui:repeat>
+                        </ul>
+
+                    </div>
+
+                    <div class="well">
+                        <ul class="nav">
+                            <li><h:link value="Ranking autorów" outcome="/authors" /></li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="well">
+                        <ui:insert name="menu">
+                            <ui:include src="/views/main/menu.xhtml" />
+                        </ui:insert>
+
+                    </div>
+
+                    <!--/.well -->
+                </div>
+                <!--/sidebar-nav-fixed -->
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+                <div class="">
+                    <ui:insert name="content" />
+                </div>
+
+            </div>
+            <!--/span-->
+            <div class="col-md-3">
+                <div class="sidebar-nav-fixed pull-right affix">
+                    <div id="cart-box" class="well">
+                    </div>
+                    <!--/.well -->
+                </div>
+                <!--/sidebar-nav-fixed -->
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+
+    </div>
+
 </h:body>
 </html>
